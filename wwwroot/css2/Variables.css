@@ -1,0 +1,15 @@
+﻿:root {
+    /* Site colors */
+    --primary-color: #00AD6A;
+    --secondary-color: #ffffff;
+    --transparent-color: rgba(0, 0, 0, 0.5);
+    --font-color: #ffffff;
+
+    /* Nav styling */
+    --active-color: #00734B;
+
+    /* Paths to files & media */
+    --header-image: "~/img/page-header.jpeg";
+
+
+}

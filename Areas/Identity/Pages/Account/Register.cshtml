@@ -1,0 +1,68 @@
+﻿@page
+@model RegisterModel
+@{
+}
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div class="container">
+    <img src="https://i.imgur.com/1yxyCKl.png" alt="Forest Churches Logo" class="logo" />
+    <form id="register-form" enctype="multipart/form-data" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <h2 id="title">Register a Forest Churches Account</h2>
+        <div class="hr-with-text">
+            <hr>
+            <div class="hr-text">Your Information</div>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+        <!-- Email -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+            <label asp-for="Input.Email">Email</label>
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <!-- Password -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+            <label asp-for="Input.Password">Password</label>
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <!-- Password (2nd Time) -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
+            <label asp-for="Input.ConfirmPassword">Confirm Password</label>
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="hr-with-text">
+            <hr>
+            <div class="hr-text">Church Information</div>
+        </div>
+        <!-- Church Name -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.ChurchName" class="form-control" autocomplete="on" aria-required="true" placeholder="Church name here" />
+            <label asp-for="Input.ChurchName">Church Name</label>
+            <span asp-validation-for="Input.ChurchName" class="text-danger"></span>
+        </div>
+        <!-- Church Denomination -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.ChurchDenomination" class="form-control" autocomplete="on" aria-required="true" placeholder="Church denomination here" />
+            <label asp-for="Input.ChurchDenomination">Church Denomination</label>
+            <span asp-validation-for="Input.ChurchDenomination" class="text-danger"></span>
+        </div>
+        <!-- Church Website -->
+        <div class="form-floating mb-3">
+            <input asp-for="Input.ChurchWebsite" class="form-control" autocomplete="on" aria-required="true" placeholder="Church website here" />
+            <label asp-for="Input.ChurchWebsite">Church Website</label>
+            <span asp-validation-for="Input.ChurchWebsite" class="text-danger"></span>
+        </div>
+
+        <div class="custom-file">
+            <label asp-for="Input.Image">Select an image for your event</label><br />
+            <input asp-for="Input.Image" type="file" class="custom-file-input" accept="image/png image/jpeg" id="customFile">
+        </div>
+
+        <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-success">Register</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

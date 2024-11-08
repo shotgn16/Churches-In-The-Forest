@@ -1,0 +1,62 @@
+﻿.eventImage {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 5%;
+}
+
+
+@media (min-width: 770px){
+    .eventContentItem {
+        text-align: left;
+    }
+
+    .eventImage {
+        width: 100%;
+    }
+
+    .eventContentClass {
+    }
+}
+
+@media (max-width: 770px) {
+    .eventImage {
+        margin-left: -6%;
+        width: 50%;
+    }
+
+    .eventContentClass {
+        margin-left: -3%;
+    }
+}
+
+@media (min-width: 1400px)
+{
+    .eventLogo {
+        width: 60%;
+    }
+}
+
+.headerRow {
+    margin-bottom: 2%;
+}
+
+.linkItem {
+    word-wrap: break-word;
+}
+
+.contentButtons {
+    display: flex;
+    padding: 2%;
+    justify-content: left;
+}
+
+.contentButtons {
+    display: flex;
+    justify-content: start;
+}
+
+.btn {
+    align-content: center;
+    justify-content: center;
+    display: flex;
+}

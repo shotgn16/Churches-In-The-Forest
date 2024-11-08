@@ -1,0 +1,18 @@
+﻿.h2 {
+    color: #00AC64;
+}
+
+.ul {
+    font-size: 20px;
+    color: #00AC64;
+}
+
+.privacyContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: #00AC64;
+    color: white;
+    margin-bottom: 2.5%;
+    padding: 1.5%;
+}

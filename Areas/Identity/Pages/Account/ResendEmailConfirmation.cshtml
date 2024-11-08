@@ -1,0 +1,26 @@
+﻿@page
+@model ResendEmailConfirmationModel
+@{
+    ViewData["Title"] = "Resend email confirmation";
+}
+<div class="row">
+    <div class="col-12 logoContainer">
+        <img class="logo" src="https://i.imgur.com/1yxyCKl.png" alt="Forest Churchs Logo" />
+    </div>
+    <div class="col-12 contentContainer">
+        <h1>Please enter your email</h1>
+        <form method="post" class="resendEmailConfirmationForm">
+            <div asp-validation-summary="All" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.Email" class="form-control" aria-required="true" placeholder="name@example.com" />
+                <label asp-for="Input.Email" class="form-label"></label>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-success">Resend</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

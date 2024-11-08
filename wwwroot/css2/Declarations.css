@@ -1,0 +1,15 @@
+﻿h1 {
+    font-size: calc(1.375rem + 1.0vw);
+    color: white;
+}
+
+h2 {
+    font-size: calc(1.2rem + 0.8vw);
+    color: white;
+}
+
+p {
+    font-size: calc(0.875rem + 0.3vw);
+    color: white;
+}
+

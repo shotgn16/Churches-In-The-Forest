@@ -1,0 +1,20 @@
+﻿.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: 0;
+}
+
+.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--secondary-color);
+}
+
+.form-check-input {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.form-floating > .form-control, .form-floating > .form-control-plaintext, .form-floating > .form-select {
+    height: auto;
+}
+
+.form-floating > .form-control-plaintext:focus, .form-floating > .form-control-plaintext:not(:placeholder-shown), .form-floating > .form-control:focus, .form-floating {
+        margin-bottom: 1.5vw;
+}

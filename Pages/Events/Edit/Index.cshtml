@@ -1,0 +1,115 @@
+﻿@page
+@model ForestChurches.Pages.Events.Edit.IndexModel
+@{
+}
+
+<partial name="_StatusMessage" model="Model.StatusMessage" />
+
+<div class="container">
+    <img src="https://i.imgur.com/1yxyCKl.png" alt="Forest Churches Logo" class="logo" />
+
+    <form asp-page-handler="UpdateEvent" id="eventForm" enctype="multipart/form-data" asp-route-returnUrl="@Model.RedirectPermanent("/Index")" method="post">
+        <h2 id="title">Update your Church Event</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+        <!-- Event Name -->
+        <div class="form-floating mb-3">
+            <input type="text" asp-for="Input.Name" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.Name">Event Name</label>
+            <span asp-validation-for="Input.Name" class="text-danger"></span>
+        </div>
+
+        <!-- Event Description -->
+        <div class="form-floating mb-3">
+            <input type="text" asp-for="Input.Description" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.Name">Event Description</label>
+            <span asp-validation-for="Input.Description" class="text-danger"></span>
+        </div>
+
+        <!-- Event Location -->
+        <div class="form-floating mb-3">
+            <input type="text" asp-for="Input.Address" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.Address">Where will the event be?</label>
+            <span asp-validation-for="Input.Address" class="text-danger"></span>
+        </div>
+
+        <!-- Event Date -->
+        <div class="form-floating mb-3">
+            <input type="date" asp-for="Input.Date" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.Date">When will the event be?</label>
+            <span asp-validation-for="Input.Date" class="text-danger"></span>
+        </div>
+
+        <!-- Event Start Time -->
+        <div class="form-floating mb-3">
+            <input type="time" asp-for="Input.StartTime" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.StartTime">When will it start?</label>
+            <span asp-validation-for="Input.StartTime" class="text-danger"></span>
+        </div>
+
+        <!-- Event End Time -->
+        <div class="form-floating mb-3">
+            <input type="time" asp-for="Input.EndTime" class="form-control" autocomplete="on" aria-required="true" />
+            <label asp-for="Input.EndTime">When will it finish?</label>
+            <span asp-validation-for="Input.EndTime" class="text-danger"></span>
+        </div>
+
+        <!-- Event Link -->
+        <div class="form-floating mb-3">
+            <input type="text" asp-for="Input.Link" class="form-control" autocomplete="on" aria-required="true" value="None" />
+            <label asp-for="Input.Link">Any relavant links?</label>
+            <span asp-validation-for="Input.Link" class="text-danger"></span>
+        </div>
+
+        <!-- Repeats -->
+        <label for="repeatEvent" class="form-label">Does your event repeat?</label>
+        <p id="frequencyLabel">None</p>
+        <input type="range" class="form-range" min="0" max="6" asp-for="Frequency" id="repeatEvent">
+        <br />
+
+        <!-- Event Photo -->
+        <div class="custom-file">
+            <label asp-for="Input.Image">Select an image for your event</label><br />
+            <input asp-for="Input.Image" type="file" class="custom-file-input" accept="image/png image/jpeg" id="customFile">
+        </div>
+
+        <button id="submitEvent" type="submit" class="w-100 btn btn-lg btn-success">Update Event</button>
+    </form>
+</div>
+
+<script>
+    const rangeInput = document.getElementById('repeatEvent');
+    const frequencyLabel = document.getElementById('frequencyLabel');
+
+    rangeInput.addEventListener('input', () => {
+        const value = parseInt(rangeInput.value);
+        let label = '';
+
+        switch (value) {
+            case 0:
+                label = 'None';
+                break;
+            case 1:
+                label = 'Daily';
+                break;
+            case 2:
+                label = 'Weekly';
+            case 3:
+                label = 'Every 2 weeks';
+                break;
+            case 4:
+                label = 'Every 3 weeks';
+                break;
+            case 5:
+                label = 'Monthly';
+                break;
+            case 6:
+                label = 'Every 2 months';
+                break;
+            default:
+                label = 'None';
+        }
+
+        frequencyLabel.textContent = label;
+    });
+</script>

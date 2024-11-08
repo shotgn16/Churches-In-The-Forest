@@ -1,0 +1,97 @@
+﻿@page
+@model ForestChurches.Pages.Events.IndexModel
+@{
+}
+
+<div class="row">
+    <div class="col-12 logoContainer">
+        <img class="logo" src="https://i.imgur.com/1yxyCKl.png" alt="Forest Churches Logo" />
+    </div>
+</div>
+
+<div class="row BodyContainer">
+    <div class="col-md-12 col-sm-12 headerRow">
+        <h2>Your Events</h2>
+        <p>Here you can view all your currently listed events for your church. Please note that to prevent an unecessary amount of outdated events and large volumes of data, <strong>events will be automatically deleted 24 hours after the finish date/time.</strong>
+            In order to add new events, please use the form. 
+        </p>
+    </div>
+
+    <div class="col-md-12 col-sm-12 eventsGroup">
+        @if (Model.AllEvents != null)
+        {
+            <ul>
+                @foreach (var item in Model.AllEvents)
+                {
+                    <div class="row">
+                        <div class="col-md-3 col-sm-12">
+                            <!-- Image -->
+                            <img class="eventImage" src="data:image;base64,@System.Convert.ToBase64String(item.ImageArray)" />
+                        </div>
+
+                        <div class="col-md-9 col-sm-12 eventContentClass">
+                            <!-- Content -->
+                            <p class="eventContentItem">
+                                <strong>Name</strong>
+                                <br />@item.Name
+                            </p>
+
+                            <p class="eventContentItem">
+                                <strong>Description</strong>
+                                <br />@item.Description
+                            </p>
+
+                            <p class="eventContentItem">
+                                <strong>Address</strong>
+                                <br />@item.Address
+                            </p>
+
+                            <p class="eventContentItem">
+                                <strong>Date</strong>
+                                <br />@item.Date
+                            </p>
+
+                            <p class="eventContentItem">
+                                <strong>Runtime</strong>
+                                <br />@item.StartTime - @item.EndTime
+                            </p>
+
+                            <p class="eventContentItem linkItem">
+                                <strong>Link</strong>
+                                <br />@item.Link
+                            </p>
+
+                            <div class="contentButtons">
+                                <a asp-page="/Events/Edit/Index" asp-route-id="@item.ID" class="btn btn-primary">Edit</a>
+
+                                <form method="post" class="contentButtons" asp-page-handler="DeleteEvent">
+                                    <input type="hidden" name="eventId" value="@item.ID" />
+                                    <button class="btn btn-danger" type="submit" onclick="return confirmDelete('@item.Name')">Delete</button>
+                                </form>
+                            </div>
+
+                            <br />
+                        </div>
+
+                        <!-- End Of Content | Breaker -->
+                        <hr />
+                    </div>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No events found.</p>
+        }
+    </div>
+</div>
+
+<script>
+    function confirmDelete(userName) {
+        if (confirm("Are you sure you want to delete this event: '" + userName + "'?")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>

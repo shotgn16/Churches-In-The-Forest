@@ -1,0 +1,78 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    max-width: 90%;
+    padding: 3%;
+    background-color: #ffffff;
+    border: 1px solid #00a651;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+@media screen and (min-width: 1366px) {
+    .container {
+        width: 50%;
+    }
+}
+
+.hr-with-text {
+    position: relative;
+    text-align: center;
+    margin: 20px 0; /* Adjust margin as needed */
+}
+
+.hr-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white; /* Optional: Add background color */
+    padding: 0 10px; /* Optional: Add padding around text */
+}
+
+.btn {
+    margin-top: 2%;
+}
+
+#frequencyLabel {
+    color: green;
+}
+
+.form-range {
+    color: #00AC64;
+}
+
+    /* Changing the form-range slider (thumb) color */
+
+    .form-range::-webkit-slider-thumb {
+        background-color: #00AC64; /* Replace with your desired color (e.g., red) */
+    }
+
+    .form-range::-moz-range-thumb {
+        background-color: #00AC64;
+    }
+
+    .form-range::-ms-thumb {
+        background-color: #00AC64;
+    }
+
+.custom-file-input {
+    border: 1px solid #00AC64;
+    background-color: grey;
+    color: white;
+}

@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Welcome to Forest Churches";
+}
+<head>
+    <!-- Page specific CSS -->
+    <link rel="stylesheet" href="~/css2/Video.css" />
+    <link rel="stylesheet" href="~/css2/Variables.css" />
+</head>
+
+@* <style>
+    .navbar-brand {
+        color: black;
+    }
+
+    .navbar-brand:hover {
+        color: white;
+    }
+    
+    .navbar .nav-link:hover {
+        color: white;
+    }
+
+    .navbar .nav-link {
+        color: black;
+    }    
+
+    .text-light {
+        color: black !important;
+    }
+
+    .text-light:hover {
+        color: white !important;
+    }
+    </style> *@
+
+<body>
+    <main>
+        <section id='title'>
+            <div id='subtitle'>
+                <h1>Welcome to Forest Churches</h1>
+                <p id="Info">Connecting Communities in the Forest of Dean.</p>
+            </div>
+
+            <section id='background-video'>
+                <video autoplay loop muted>
+                    <source src="~/img/header.mp4">
+                </video>
+            </section>
+        </section>
+    </main>
+</body>

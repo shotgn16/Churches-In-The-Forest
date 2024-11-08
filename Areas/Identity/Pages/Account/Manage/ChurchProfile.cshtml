@@ -1,0 +1,222 @@
+﻿@page
+@model ChurchProfile
+@{
+    ViewData["ActivePage"] = ManageNavPages.ChurchProfile; 
+}
+<head>
+    <link rel="stylesheet" href="~/css2/profile.css" asp-append-version="true" />
+</head>
+
+<style>
+    .endSection {
+        padding-bottom: 3.5%;
+        align-items: center;
+    }
+</style>
+
+<!-- Beginning of Page header -->
+<div class="container-fluid page-hero">
+    <div class="hero-text">
+        <partial name="_StatusMessage" for="StatusMessage" />
+        <div>
+            <img src="https://i.imgur.com/oLC9RcU.png" alt="profile picture" />
+        </div>
+        <div class="heading-text">
+            <h1>Welcome back, User!</h1>
+            <p>The Community Church</p>
+        </div>
+    </div>
+</div>
+
+<!-- Tab Nav -->
+<partial name="_ManageNav" />
+
+    <!-- Beginning of site content - Form Section -->
+    <h1>Update your church information</h1>
+
+    <!-- Section for church information -->
+    <section>
+        <form method="post" asp-page-handler="">
+            <div class="form-container">
+                <div class="form-floating full-width">
+                    <input asp-for="@Model._currentchurch.Name" aria-required="true" class="form-control" id="churchName" type="text" placeholder="Church Name" />
+                        <label asp-for="@Model._currentchurch.Name"></label>
+                    <span asp-validation-for="@Model._currentchurch.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating full-width">
+                    <textarea asp-for="@Model._currentchurch.Description" class="form-control" id="churchDescription" placeholder="Church Description" rows="5"></textarea>
+                        <label asp-for="@Model._currentchurch.Description"></label>
+                    <span asp-validation-for="@Model._currentchurch.Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                    <input asp-for="@Model._currentchurch.Denominaion" class="form-control" id="denomination" type="text" placeholder="Denomination" />
+                        <label asp-for="@Model._currentchurch.Denominaion"></label>
+                    <span asp-validation-for="@Model._currentchurch.Denominaion" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                    <input asp-for="@Model._currentchurch.Congregation" class="form-control" id="congregationSize" type="text" placeholder="Number of Congregants" />
+                        <label asp-for="@Model._currentchurch.Congregation">Congregation Size</label>
+                    <span asp-validation-for="@Model._currentchurch.Congregation" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                <input id="addressInput" asp-for="@Model._currentchurch.Address" class="form-control" type="text" placeholder="Church Address" />
+                        <label asp-for="@Model._currentchurch.Address"></label>
+                    <span asp-validation-for="@Model._currentchurch.Address" class="text-danger"></span>
+
+                    <!-- Button to add a map pin-point -->
+                <button asp-for="@Model._currentchurch.Address" onclick="getLocation()" type="button" class="btn btn-success w-100">Use My Location</button>
+                </div>
+
+                <!-- Church Information [SUBMIT]-->
+                <button type="submit" class="btn btn-success w-100">Update Information</button>
+            </div>
+        </form>
+    </section>
+
+<h1>Update your contact details</h1>
+
+    <!-- Section for contact information -->
+    <section>
+    <form method="post" asp-page-handler="">
+            <div class="form-container">
+                <div class="form-floating half-width">
+                    <input asp-for="@Model._currentchurch.Phone" class="form-control" id="phone" type="tel" placeholder="Church Phone" />
+                        <label asp-for="@Model._currentchurch.Phone"> Phone</label>
+                    <span asp-validation-for="@Model._currentchurch.Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                    <input asp-for="@Model._currentchurch.Churchsuite" class="form-control" id="churchsuite" type="text" placeholder="Churchsuite link" />
+                        <label asp-for="@Model._currentchurch.Churchsuite">ChurchSuite (Optional)</label>
+                    <span asp-validation-for="@Model._currentchurch.Churchsuite" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                    <input asp-for="@Model._currentchurch.Website" class="form-control" id="website" type="text" placeholder="Church Website" />
+                        <label asp-for="@Model._currentchurch.Website">Website</label>
+                    <span asp-validation-for="@Model._currentchurch.Website" class="text-danger"></span>
+                </div>
+
+                <div class="form-floating half-width">
+                    <select class="form-control" asp-for="@Model._currentchurch.Parking" id="parking">
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                    <label asp-for="@Model._currentchurch.Parking"></label>
+                </div>
+
+                <!-- Facilities Section -->
+                <div class="form-group half-width ">
+                    <label class="form-check-label listLabel">Facilities</label>
+                    <div class="checkbox-list">
+                        <label><input class="form-check-input" type="checkbox" asp-for="@Model._currentchurch.Restrooms" /> Restrooms</label>
+                        <label><input class="form-check-input" type="checkbox" asp-for="@Model._currentchurch.WheelchairAccess" /> Wheelchair Access</label>
+                        <label><input class="form-check-input" type="checkbox" asp-for="@Model._currentchurch.Wifi" /> Free WiFi</label>
+                        <label><input class="form-check-input" type="checkbox" asp-for="@Model._currentchurch.Refreshments" /> Refreshments</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Details [SUBMIT]-->
+            <button type="submit" class="btn btn-success w-100">Update Contact Details</button>
+        </form>
+    </section>
+
+    <!-- Buttons -->
+    <section class="endSection">
+        <div class="btn btn_changeImage btn-success">Change Logo</div>
+        <div class="btn btn_markShutdown btn-warning">Mark Church as Closed</div>
+        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#serviceTimes">Manage Church Service Times</button>
+    </section>
+
+<!-- Service Times Modal (Bootstrap) -->
+<div class="modal fade" id="serviceTimes" tabindex="-1" aria-labelledby="serviceTimeslabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="serviceTimeslabel">Manage Church Service Times</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Content goes here -->
+                <div class="row">
+                    <div class="col-6 col-sm-12">
+                        <h3>Current Service Times</h3>
+
+                        <table class="table transparent-table">
+                            <custom-thead>
+                                <tr class="custom-tr">
+                                    <th>Time</th>
+                                    <th>Delete Entry</th>
+                                </tr>
+                            </custom-thead>
+                            <custom-tbody>
+                                    @if (Model._currentchurch.ServiceTimes != null)
+                                    {
+                                        @foreach (var service in Model._currentchurch.ServiceTimes)
+                                        {
+                                        <tr>
+                                            <td style="font-size:175%">@service</td>
+                                            <td>
+                                                <form method="post" asp-page-handler="RemoveService">
+                                                    <input type="hidden" name="_serviceTime" id="_serviceTime" class="form-control" placeholder="10am...">
+                                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        }
+                                    }
+                            </custom-tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-6 col-sm-12">
+                        <!-- Content goes here -->
+                    </div>
+                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- Include jQuery -->
+
+        <script>
+            const addressInput = document.getElementById("addressInput");
+
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                } else {
+                    addressInput.value = "Geolocation is not supported by this browser.";
+                }
+            }
+
+            function showPosition(position) {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                $.ajax({
+                    url: `/ChurchProfile?handler=GetAddress&latitude=${latitude}&longitude=${longitude}`,
+                    method: 'GET',
+                    success: function (address) {
+                        addressInput.value = address;
+                    },
+                    error: function (xhr, status, error) {
+                        addressInput.value = "Error retrieving address: " + error;
+                        console.error('Error:', error); // Log the error for debugging
+                    }
+                });
+            }
+        </script>
+}
