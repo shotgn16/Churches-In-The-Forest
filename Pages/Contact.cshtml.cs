@@ -1,3 +1,5 @@
+// NOTE: This page is currently being re-designed so functionality may not line up with counter-part cshtml page.
+
 using ForestChurches.Components.Email;
 using ForestChurches.Components.Users;
 using ForestChurches.Models;
